@@ -49,6 +49,11 @@ parameters:
     type: string
     default: ""
 
+  config_drive: 
+    type: boolean
+    description: whether to use config drive
+    default: false
+
   is_cluster_stack:
     type: boolean
     default: false
@@ -1132,6 +1137,7 @@ resources:
             list_join:
               - '-'
               - [{ get_param: 'OS::stack_name' }, 'master', '%index%']
+          config_drive: {get_param: config_drive}
           nodegroup_role: {get_param: master_role}
           nodegroup_name: {get_param: master_nodegroup_name}
           heapster_enabled: {get_param: heapster_enabled}
@@ -1350,6 +1356,7 @@ resources:
             list_join:
               - '-'
               - [{ get_param: 'OS::stack_name' }, 'node', '%index%']
+          config_drive: {get_param: config_drive}
           prometheus_monitoring: {get_param: prometheus_monitoring}
           nodegroup_role: {get_param: worker_role}
           nodegroup_name: {get_param: worker_nodegroup_name}

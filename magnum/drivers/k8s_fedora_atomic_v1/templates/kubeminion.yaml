@@ -11,6 +11,10 @@ parameters:
     type: string
     description: server name
 
+  config_drive: 
+    type: boolean
+    description: whether to use config drive
+
   server_image:
     type: string
     description: glance image used to boot the server
@@ -505,6 +509,7 @@ resources:
     type: OS::Nova::Server
     properties:
       name: {get_param: name}
+      config_drive: {get_param: config_drive}
       flavor: {get_param: minion_flavor}
       image: {get_param: server_image}
       key_name: {get_param: ssh_key_name}
@@ -521,6 +526,7 @@ resources:
     type: OS::Nova::Server
     properties:
       name: {get_param: name}
+      config_drive: {get_param: config_drive}
       flavor: {get_param: minion_flavor}
       key_name: {get_param: ssh_key_name}
       user_data: {get_resource: agent_config}

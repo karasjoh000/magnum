@@ -11,6 +11,10 @@ parameters:
     type: string
     description: server name
 
+  config_drive: 
+    type: boolean
+    description: whether to use config drive
+
   server_image:
     type: string
     description: glance image used to boot the server
@@ -882,6 +886,7 @@ resources:
     condition: image_based
     properties:
       name: {get_param: name}
+      config_drive: {get_param: config_drive}
       image: {get_param: server_image}
       flavor: {get_param: master_flavor}
       key_name: {get_param: ssh_key_name}
@@ -898,6 +903,7 @@ resources:
     condition: volume_based
     properties:
       name: {get_param: name}
+      config_drive: {get_param: config_drive}
       flavor: {get_param: master_flavor}
       key_name: {get_param: ssh_key_name}
       user_data_format: SOFTWARE_CONFIG
