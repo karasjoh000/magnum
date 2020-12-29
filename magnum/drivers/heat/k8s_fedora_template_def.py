@@ -74,7 +74,7 @@ class K8sFedoraTemplateDefinition(k8s_template_def.K8sTemplateDefinition):
                 'to be true or unset.'))
         extra_params['cloud_provider_enabled'] = cloud_provider_enabled
 
-        label_list = ['coredns_tag',
+        label_list = ['config_drive','coredns_tag',
                       'kube_tag', 'container_infra_prefix',
                       'availability_zone',
                       'cgroup_driver',
